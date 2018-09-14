@@ -16,6 +16,10 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
+        if s is None:
+            return None
+        if len(s) == 0:
+            return True
         str1 = "abcdefghijklmnopqrstuvwxyz0123456789"
         lower = s.lower()
         validList = [w for w in lower if w in str1]
