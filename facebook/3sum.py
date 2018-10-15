@@ -4,7 +4,7 @@ class Solution:
         :type nums: List[int]
         :rtype: List[List[int]]
         Use three pointers: left, right, curr
-        This is O(nLogn + nn) = O(n^2)
+        This is O(nLogn + n*n) = O(n^2)   drop nlogn cuz faster than n*n
         '''
         res = []
         nums.sort()  # O(n log n)
