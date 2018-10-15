@@ -10,4 +10,3 @@ def binarysearch(vals, value):
         else:
             return mid
     return None
- 
