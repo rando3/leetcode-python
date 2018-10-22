@@ -8,13 +8,24 @@
 #
 
 def maxStreak(m, data):
+    maxStreak = 0
     streak = 0
     for day in data:
+        print(day)
         checkAttendance = list(day)
         if all(d == "Y" for d in checkAttendance):
+            print("incr streak")
             streak += 1
         else:
-            return streak
+            print("not all here")
+            if streak > maxStreak:
+                maxStreak = streak
+                print("new max streak")
+                print(maxStreak)
+            streak = 0
+    if streak > maxStreak:
+        maxStreak = streak
+    return maxStreak
 
 
 if __name__ == "__main__":
