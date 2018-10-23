@@ -11,20 +11,19 @@ class Solution:
         :type l1: ListNode
         :type l2: ListNode
         :rtype: ListNode
+        Iterate through two linkedlists and do place based addition with a carry. Will be in reverse order (to make carrying a bit easier)
         """
-        addition = ListNode(None)
-        ptr = addition
-        curr1 = l1
-        curr2 = l2
+        head = ListNode(0)
+        curr = head
         carry = 0
 
-        while curr1.next or curr2.next or carry:
+        while l1.next or l2.next or carry:
             summed = -1
-            if curr1.val:
-                add1 = curr1.val
+            if l1.val:
+                add1 = l1.val
                 summed = add1
-            if curr2.val:
-                add2 = curr2.val
+            if l2.val:
+                add2 = l2.val
                 if summed != -1:
                     summed += add2
                 else:
@@ -36,11 +35,11 @@ class Solution:
             rem = summed % 10
             print(rem)
             carry = summed // 10
-            ptr.next = ListNode(rem)
-            ptr = ptr.next
-            if curr1.next:
-                curr1 = curr1.next
-            if curr2.next:
-                curr2 = curr2.next
+            curr.next = ListNode(rem)
+            curr = curr.next
+            if l1.next:
+                l1 = l1.next
+            if l2.next:
+                l2 = l2.next
 
-        return addition.next
+        return head.next

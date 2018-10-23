@@ -7,22 +7,18 @@ class TreeNode:
 
 
 class Solution:
-
-    # def nodesToList(self, inorder):
-    #     r = []
-    #     for x in inorder:
-    #         r.append(x.val)
-    #     return str(r)
-
-    def inorderTraversal(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[int]
-        Given a binary tree, return the inorder traversal of its nodes' values.
-        Follow up: Recursive solution is trivial, could you do it iteratively?
-        Medium
-        Check for 'in' doesn't work, infinite loop :(
-        """
+    def inorder3(self, root):
+        ''' Great solution, no boolean '''
+        result, stack = [], []
+        while stack or root:
+            if root:
+                stack.append(root)
+                root = root.left
+            else:
+                temp = stack.pop()
+                result.append(temp.val)
+                root = temp.right
+        return result
 
     '''Recursive '''
     def inorderTraversal2(self, root):
@@ -30,15 +26,17 @@ class Solution:
         :type root: TreeNode
         :rtype: List[int]
         """
-        self.path = []  # if declared outside methods -- residual values remain!!
-        self.inorder(root)
-        return self.path
+        path = []  # if declared outside methods -- residual values remain!!
 
-    def inorder(self, root):
-        if root:
-            self.inorder(root.left)
-            self.path.append(root.val)
-            self.inorder(root.right)
+        def inorder(self, root):
+            if root:
+                inorder(root.left)
+                path.append(root.val)
+                inorder(root.right)
+        inorder(root)
+        return path
+
+    
 
     ''' MIND BLOWING solution: '''
     # Use a tuple with a boolean to check for visited, DUH!
@@ -56,18 +54,6 @@ class Solution:
                 stack.append((root.left, False))
         return result
 
-    def inorder3(self, root):
-        ''' Great solution, no boolean '''
-        result, stack = [], []
-        while stack or root:
-            if root:
-                stack.append(root)
-                root = root.left
-            else:
-                temp = stack.pop()
-                result.append(temp.val)
-                root = temp.right
-        return result
 
 
 if __name__ == '__main__':

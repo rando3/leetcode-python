@@ -8,6 +8,25 @@ class ListNode:
         self.next = None
 
 
+def mergeLists(lists):
+    '''Just sorting list before making a linked list'''
+    nodes = []
+    merged = ListNode(0)
+    curr = merged
+
+    for l in lists:
+        while l:
+            nodes.append(l.val)
+            l = l.next
+    nodes.sort()
+
+    for x in nodes:
+        curr.next = ListNode(x)
+        curr = curr.next
+
+    return merged.next
+
+
 class Solution(object):
 
     def mergeKLists(self, lists):
